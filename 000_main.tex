@@ -1,0 +1,159 @@
+%
+%
+% (C) 2018-2021, Tiago Gasiba
+%                tiago.gasiba@gmail.com
+%
+% With Great Power Comes a Great Thesis!
+% Use it/this with care :-)
+%
+\documentclass[a4paper,12pt,twoside]{book}
+\usepackage[lmargin=142pt,rmargin=95pt,tmargin=127pt,bmargin=123pt]{geometry}
+\usepackage{savetrees}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage[graphicx]{realboxes}
+\usepackage[bookmarks]{hyperref}
+\usepackage[ngerman, english]{babel}
+\usepackage{blindtext}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[natbib=true,style=numeric-comp,sortcites,sorting=nty,backend=biber,maxbibnames=99]{biblatex}
+\usepackage[acronym,nomain]{glossaries}
+\usepackage{pdfpages}
+\usepackage{lipsum}
+\usepackage{longtable}
+\usepackage{fix-cm}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{titlesec}
+\usepackage{tabularx}
+\usepackage{imakeidx}
+\usepackage{csquotes}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{cleveref}
+\usepackage{algorithmic}
+\usepackage{textcomp}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{setspace}
+\usepackage{makecell}
+\usepackage{rotating}
+\usepackage{ifthen}
+\usepackage{breakcites}
+\usepackage{multicol}
+\usepackage{booktabs}
+\usepackage{paralist}
+\usepackage{xurl}
+\usepackage{float}
+\usepackage{pdflscape}
+\usepackage{afterpage}
+\usepackage{caption}
+\usepackage{siunitx}
+\usepackage{threeparttable}
+\usepackage{enumerate}
+\usepackage[normalem]{ulem}
+\usepackage{nth}
+\usepackage[numbib]{tocbibind}
+\usepackage{xspace}
+\usepackage{ragged2e}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{hhline}
+\usepackage{placeins}
+\usepackage{flafter}
+\usepackage{acronym}
+
+\usepackage{silence,lmodern}
+\WarningFilter{microtype}{Unable to apply patch}
+
+\hypersetup {
+    colorlinks,
+    linkcolor = black,
+    citecolor = black,
+    urlcolor  = black
+}
+
+\captionsetup[table]{
+  position=above
+}
+
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
+
+\addbibresource{master.bib}
+
+\input{999_code}
+
+\setlength{\headheight}{15pt}
+\titleformat{\chapter}[display]{\filleft\Huge\bfseries}{\fontsize{100}{100}\selectfont\textcolor{gray75}\thechapter}{1ex}{}[]%
+
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{#1}}
+\renewcommand{\sectionmark}[1]{\markright{}}
+
+\fancyhf{}
+\fancyhead[LE]{\makebox[2.5em][l]{\thepage}\textbf{\nouppercase{\leftmark}}}
+\fancyhead[RO]{\textbf{\nouppercase{\leftmark}}\makebox[2.5em][r]{\thepage}}
+
+\fancypagestyle{plain}{ %
+  \fancyhf{} % remove everything
+  \renewcommand{\headrulewidth}{0pt} % remove lines as well
+  \renewcommand{\footrulewidth}{0pt}
+
+}
+\renewcommand{\headrulewidth}{0.4pt}% Default \headrulewidth is 0.4pt
+\renewcommand{\footrulewidth}{0.4pt}% Default \footrulewidth is 0pt
+\renewcommand\tabularxcolumn[1]{m{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                             START OF DOCUMENT                              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+  %%%%% Cover pages, copyright, authorship, abstract, table of contents and list of figures
+  \pagestyle{empty}
+  \frontmatter
+  \include{250_titelblatt}
+
+  \include{100_copyright}
+  \cleardoublepage
+  \markboth{}{}
+  \include{500_acknowledgements}
+  \cleardoublepage
+
+  \include{300_abstract_en}
+  \include{100_copyright}
+  \include{300_abstract_de}
+  \include{100_copyright}
+
+  \pagestyle{fancy}
+  \tableofcontents
+  \markboth{Contents}{Contents}
+  \listoffigures
+  \markboth{List of Figures}{List of Figures}
+  \listoftables
+  \markboth{List of Tables}{List of Tables}
+
+  \cleardoublepage
+  \markboth{Acronyms}{Acronyms}
+  \include{600_acronyms}       % -- Acronyms
+                               % -- References
+
+  %%%%% Start of document
+  \mainmatter\setcounter{page}{1}
+  \raggedbottom
+  \include{chap_01}
+
+  \cleardoublepage
+  \markboth{References}{References}
+  \printbibliography[title={References},heading=bibintoc]
+  \include{400_appendix}       % -- Appendix
+  \backmatter
+
+  %%%%% End of document
+  %%%%%     Additional pages to protect the references
+  \cleardoublepage
+  \include{100_copyright}
+  \include{100_copyright}
+  \include{100_copyright}
+  \include{100_copyright}
+\end{document}
